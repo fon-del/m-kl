@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>FlyGo — авиабилеты</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f7fb;
+}
+
+/* HEADER */
+.header {
+    background: #0a223d;
+    color: white;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+/* SEARCH */
+.search-box {
+    background: white;
+    margin: -20px auto 30px;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 900px;
+    display: flex;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.search-box input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.search-box button {
+    padding: 12px 20px;
+    background: #ff6f00;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* TICKETS */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.ticket {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.price {
+    color: #ff6f00;
+    font-weight: bold;
+}
+
+/* ABOUT */
+.about {
+    background: white;
+    padding: 40px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+
+/* FEATURES */
+.features {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    flex: 1;
+}
+
+/* SUPPORT */
+.support {
+    background: #0a223d;
+    color: white;
+    padding: 40px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.support input, .support textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+.support button {
+    padding: 10px 20px;
+    background: #ff6f00;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">✈️ FlyGo</div>
+    <div class="nav">
+        <a href="#about">О компании</a>
+        <a href="#support">Поддержка</a>
+    </div>
+</div>
+
+<div class="search-box">
+    <input type="text" id="from" placeholder="Откуда">
+    <input type="text" id="to" placeholder="Куда">
+    <input type="date" id="date">
+    <button onclick="search()">Найти</button>
+</div>
+
+<div class="container">
+
+    <h2>Доступные билеты</h2>
+    <div id="tickets"></div>
+
+    <div id="about" class="about">
+        <h2>О компании</h2>
+        <p>
+            FlyGo — современный сервис поиска авиабилетов, вдохновленный 
+            :contentReference[oaicite:1]{index=1}.
+            Мы помогаем находить самые дешёвые перелёты по всему миру,
+            сравнивая сотни авиакомпаний.
+        </p>
+    </div>
+
+    <h2>Почему выбирают нас</h2>
+    <div class="features">
+        <div class="feature">💸 Лучшие цены</div>
+        <div class="feature">⚡ Быстрый поиск</div>
+        <div class="feature">🌍 По всему миру</div>
+    </div>
+
+</div>
+
+<div id="support" class="support">
+    <h2>Служба поддержки</h2>
+    <p>Свяжитесь с нами, если у вас есть вопросы</p>
+
+    <input type="text" placeholder="Ваше имя"><br>
+    <input type="email" placeholder="Email"><br>
+    <textarea placeholder="Ваш вопрос"></textarea><br>
+    <button onclick="sendSupport()">Отправить</button>
+</div>
+
+<footer>
+© 2026 FlyGo
+</footer>
+
+<script>
+function search() {
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+    let date = document.getElementById("date").value;
+
+    let tickets = document.getElementById("tickets");
+    tickets.innerHTML = "";
+
+    let flights = [
+        {price: "120 000 ₸"},
+        {price: "150 000 ₸"},
+        {price: "180 000 ₸"}
+    ];
+
+    flights.forEach(f => {
+        tickets.innerHTML += `
+        <div class="ticket">
+            <div>
+                <h3>${from} → ${to}</h3>
+                <p>${date}</p>
+            </div>
+            <div>
+                <div class="price">${f.price}</div>
+                <button onclick="buy()">Купить</button>
+            </div>
+        </div>
+        `;
+    });
+}
+
+function buy() {
+    alert("Переход к оплате...");
+}
+
+function sendSupport() {
+    alert("Сообщение отправлено!");
+}
+</script>
+
+</body>
+</html>
